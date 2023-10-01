@@ -1,0 +1,10 @@
+services:
+  foo:
+    image: bar
+    init: true
+    label:
+      baz: qux
+  baz:
+    image: qux
+    label:
+      baz: qux

@@ -1,0 +1,5 @@
+services:
+  foo:
+    image: bar
+  baz:
+    image: qux
