@@ -3,6 +3,7 @@ package composebuilder
 import (
 	"context"
 	"os"
+	"sort"
 
 	"github.com/compose-spec/compose-go/loader"
 	"github.com/compose-spec/compose-go/types"
@@ -36,6 +37,10 @@ func Build(
 		base.Services = append(base.Services, merged)
 	}
 
+	sort.Slice(base.Services, func(i, j int) bool {
+		return base.Services[i].Name > base.Services[j].Name
+	})
+
 	return nil
 }
 
@@ -67,7 +72,13 @@ func mergeService(service types.ServiceConfig, override types.ServiceConfig) typ
 		func(o *loader.Options) {
 			o.SetProjectName("temp", true)
 			o.SkipValidation = true
+			o.SkipInterpolation = true
+			o.SkipNormalization = true
+			o.ResolvePaths = false
+			o.SkipConsistencyCheck = true
+			o.SkipExtends = true
 			o.SkipResolveEnvironment = true
+			o.Profiles = []string{"*"}
 		},
 	)
 	if err != nil {

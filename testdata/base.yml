@@ -1,5 +1,25 @@
 services:
   foo:
     image: bar
+    networks:
+      sample_network: {}
+    volumes:
+      - type: volume
+        source: sample_volume
+        target: /data
+    env_file:
+      - ../foo.env
   baz:
     image: qux
+networks:
+  sample_network:
+    external: true
+volumes:
+  sample_volume:
+    external: true
+secrets:
+  server-certificate:
+    external: true
+configs:
+  http_config:
+    file: ./httpd.conf

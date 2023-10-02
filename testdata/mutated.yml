@@ -1,10 +1,30 @@
 services:
   foo:
+    env_file:
+      - ../foo.env
     image: bar
     init: true
-    label:
+    labels:
       baz: qux
+    networks:
+      sample_network: {}
+    volumes:
+      - type: volume
+        source: sample_volume
+        target: /data
   baz:
     image: qux
-    label:
+    labels:
       baz: qux
+networks:
+  sample_network:
+    external: true
+volumes:
+  sample_volume:
+    external: true
+secrets:
+  server-certificate:
+    external: true
+configs:
+  http_config:
+    file: ./httpd.conf
