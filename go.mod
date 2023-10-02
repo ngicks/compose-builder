@@ -4,7 +4,6 @@ go 1.21.0
 
 require (
 	github.com/compose-spec/compose-go v1.19.0
-	gopkg.in/yaml.v3 v3.0.1
 	gotest.tools/v3 v3.5.1
 )
 
@@ -25,4 +24,5 @@ require (
 	golang.org/x/exp v0.0.0-20230713183714-613f0c0eb8a1 // indirect
 	golang.org/x/sync v0.3.0 // indirect
 	golang.org/x/sys v0.1.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
